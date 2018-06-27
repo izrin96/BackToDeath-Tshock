@@ -1,0 +1,1 @@
+Back to death and set home plugin for Terraria Tshock server. This plugin created for my private server. Credit to <a href="https://github.com/QuiCM/EssentialsPlus">EssentialsPlus</a> for some of the codes
