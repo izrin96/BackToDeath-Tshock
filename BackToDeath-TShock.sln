@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackToDeath-TShock", "BackToDeath-TShock\BackToDeath-TShock.csproj", "{4C15E686-FD2C-4676-BD79-63E97D6AF2F7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4C15E686-FD2C-4676-BD79-63E97D6AF2F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C15E686-FD2C-4676-BD79-63E97D6AF2F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C15E686-FD2C-4676-BD79-63E97D6AF2F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C15E686-FD2C-4676-BD79-63E97D6AF2F7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {59E052C2-AD17-4FFD-AB3B-63421ACAAB97}
+	EndGlobalSection
+EndGlobal

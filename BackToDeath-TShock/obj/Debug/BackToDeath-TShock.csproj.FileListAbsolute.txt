@@ -1,0 +1,13 @@
+C:\Users\Shahredza\source\repos\BackToDeath-TShock\BackToDeath-TShock\bin\Debug\BackToDeath-TShock.dll
+C:\Users\Shahredza\source\repos\BackToDeath-TShock\BackToDeath-TShock\bin\Debug\BackToDeath-TShock.pdb
+C:\Users\Shahredza\source\repos\BackToDeath-TShock\BackToDeath-TShock\bin\Debug\OTAPI.dll
+C:\Users\Shahredza\source\repos\BackToDeath-TShock\BackToDeath-TShock\bin\Debug\TerrariaServer.exe
+C:\Users\Shahredza\source\repos\BackToDeath-TShock\BackToDeath-TShock\bin\Debug\TShockAPI.dll
+C:\Users\Shahredza\source\repos\BackToDeath-TShock\BackToDeath-TShock\obj\Debug\BackToDeath-TShock.csprojAssemblyReference.cache
+C:\Users\Shahredza\source\repos\BackToDeath-TShock\BackToDeath-TShock\obj\Debug\BackToDeath-TShock.csproj.CoreCompileInputs.cache
+C:\Users\Shahredza\source\repos\BackToDeath-TShock\BackToDeath-TShock\obj\Debug\BackToDeath-TShock.csproj.CopyComplete
+C:\Users\Shahredza\source\repos\BackToDeath-TShock\BackToDeath-TShock\obj\Debug\BackToDeath-TShock.dll
+C:\Users\Shahredza\source\repos\BackToDeath-TShock\BackToDeath-TShock\obj\Debug\BackToDeath-TShock.pdb
+C:\Users\Shahredza\source\repos\BackToDeath-TShock\BackToDeath-TShock\bin\Debug\Mono.Data.Sqlite.dll
+C:\Users\Shahredza\source\repos\BackToDeath-TShock\BackToDeath-TShock\bin\Debug\MySql.Data.dll
+C:\Users\Shahredza\source\repos\BackToDeath-TShock\BackToDeath-TShock\bin\Debug\Newtonsoft.Json.dll
