@@ -14,6 +14,6 @@ namespace BackToDeath_TShock
 
         public Vector2 lastLocation { get; set; }
 
-        public bool isDeathYet = false;
+        public bool canBack = false;
     }
 }

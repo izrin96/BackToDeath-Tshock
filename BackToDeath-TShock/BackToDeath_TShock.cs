@@ -1,5 +1,6 @@
 ﻿using BackToDeath_TShock.DbManager;
 using BackToDeath_TShock.Extensions;
+using Microsoft.Xna.Framework;
 using Mono.Data.Sqlite;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 using Terraria;
 using TerrariaApi.Server;
 using TShockAPI;
+using TShockAPI.Hooks;
 
 namespace BackToDeath_TShock
 {
@@ -23,7 +25,7 @@ namespace BackToDeath_TShock
 
         public override string Name => "BackToDeath";
 
-        public override Version Version => new Version(1, 0, 0);
+        public override Version Version => new Version(1, 1, 0);
 
         public override string Author => "izrin96";
 
@@ -60,18 +62,39 @@ namespace BackToDeath_TShock
             Homes = new HomeManager(Db);
         }
 
-        private void cmdBack(CommandArgs args)
+        private List<string> everyTeleportCommands = new List<string>
         {
-            TSPlayer player = args.Player;
+            "tp", "tppos", "tpnpc", "warp", "spawn", "home"
+        };
+
+        private void OnPlayerCommand(PlayerCommandEventArgs e)
+        {
+            if (e.Handled || e.Player == null)
+            {
+                return;
+            }
+
+            TSPlayer player = e.Player;
+
+            if (everyTeleportCommands.Contains(e.CommandName))
+            {
+                player.GetPlayerInfo().lastLocation = new Vector2(player.X, player.Y);
+            }
+        }
+
+        private void cmdBack(CommandArgs e)
+        {
+            TSPlayer player = e.Player;
             PlayerInfo data = player.GetPlayerInfo();
 
-            if (!player.GetPlayerInfo().isDeathYet)
+            if (!player.GetPlayerInfo().canBack)
             {
-                args.Player.SendErrorMessage("Hang belum mampus!");
+                e.Player.SendErrorMessage("Tak boleh back lagi!");
                 return;
             }
 
             player.Teleport(data.lastLocation.X, data.lastLocation.Y);
+            e.Player.SendSuccessMessage("Teleport you to last location");
         }
 
         public static async void cmdDelHome(CommandArgs e)
@@ -133,43 +156,43 @@ namespace BackToDeath_TShock
             }
         }
 
-        private async void cmdHome(CommandArgs args)
+        private async void cmdHome(CommandArgs e)
         {
-            if (args.Parameters.Count > 1)
+            if (e.Parameters.Count > 1)
             {
-                args.Player.SendErrorMessage("Invalid syntax! Proper syntax: {0}home <home name>", TShock.Config.CommandSpecifier);
+                e.Player.SendErrorMessage("Invalid syntax! Proper syntax: {0}home <home name>", TShock.Config.CommandSpecifier);
                 return;
             }
 
-            if (Regex.Match(args.Message, @"^\w+ -l(?:ist)?$").Success)
+            if (Regex.Match(e.Message, @"^\w+ -l(?:ist)?$").Success)
             {
-                List<Home> homes = await BackToDeath.Homes.GetAllAsync(args.Player);
-                args.Player.SendInfoMessage(homes.Count == 0 ? "You have no homes set." : "List of homes: {0}", string.Join(", ", homes.Select(h => h.Name)));
+                List<Home> homes = await BackToDeath.Homes.GetAllAsync(e.Player);
+                e.Player.SendInfoMessage(homes.Count == 0 ? "You have no homes set." : "List of homes: {0}", string.Join(", ", homes.Select(h => h.Name)));
             }
             else
             {
-                string homeName = args.Parameters.Count == 1 ? args.Parameters[0] : "default";
-                Home home = await BackToDeath.Homes.GetAsync(args.Player, homeName);
+                string homeName = e.Parameters.Count == 1 ? e.Parameters[0] : "default";
+                Home home = await BackToDeath.Homes.GetAsync(e.Player, homeName);
                 if (home != null)
                 {
-                    args.Player.Teleport(home.X, home.Y);
-                    args.Player.SendSuccessMessage("Teleported you to your home '{0}'.", homeName);
+                    e.Player.Teleport(home.X, home.Y);
+                    e.Player.SendSuccessMessage("Teleported you to your home '{0}'.", homeName);
                 }
                 else
                 {
-                    args.Player.SendErrorMessage("Invalid home '{0}'!", homeName);
+                    e.Player.SendErrorMessage("Invalid home '{0}'!", homeName);
                 }
             }
         }
 
-        private void OnGetData(GetDataEventArgs args)
+        private void OnGetData(GetDataEventArgs e)
         {
-            if (args.Handled)
+            if (e.Handled)
             {
                 return;
             }
 
-            TSPlayer tsplayer = TShock.Players[args.Msg.whoAmI];
+            TSPlayer tsplayer = TShock.Players[e.Msg.whoAmI];
             if (tsplayer == null)
             {
                 return;
@@ -177,11 +200,11 @@ namespace BackToDeath_TShock
 
             PlayerInfo playerInfo = tsplayer.GetPlayerInfo();
 
-            switch (args.MsgID)
+            switch (e.MsgID)
             {
                 case PacketTypes.PlayerDeathV2:
                     playerInfo.lastLocation = tsplayer.TPlayer.position;
-                    playerInfo.isDeathYet = true;
+                    playerInfo.canBack = true;
                     break;
             }
         }
