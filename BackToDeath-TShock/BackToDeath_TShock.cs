@@ -79,6 +79,7 @@ namespace BackToDeath_TShock
             if (everyTeleportCommands.Contains(e.CommandName))
             {
                 player.GetPlayerInfo().lastLocation = new Vector2(player.X, player.Y);
+                player.GetPlayerInfo().canBack = true;
             }
         }
 
