@@ -39,6 +39,7 @@ namespace BackToDeath_TShock
         public void pushLastLocation(Vector2 vector)
         {
             lastLocation.Add(vector);
+            canBack = true;
 
             if (lastLocation.Count == 5)
                 lastLocation.RemoveAt(0);

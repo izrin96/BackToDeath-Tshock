@@ -79,7 +79,6 @@ namespace BackToDeath_TShock
             if (everyTeleportCommands.Contains(e.CommandName))
             {
                 player.GetPlayerInfo().pushLastLocation(player.TPlayer.position);
-                player.GetPlayerInfo().canBack = true;
             }
         }
 
@@ -207,7 +206,6 @@ namespace BackToDeath_TShock
             {
                 case PacketTypes.PlayerDeathV2:
                     playerInfo.pushLastLocation(tsplayer.TPlayer.position);
-                    playerInfo.canBack = true;
                     break;
             }
         }
