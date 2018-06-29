@@ -25,7 +25,7 @@ namespace BackToDeath_TShock
 
         public override string Name => "BackToDeath";
 
-        public override Version Version => new Version(1, 1, 0);
+        public override Version Version => new Version(1, 1, 1);
 
         public override string Author => "izrin96";
 
@@ -78,7 +78,7 @@ namespace BackToDeath_TShock
 
             if (everyTeleportCommands.Contains(e.CommandName))
             {
-                player.GetPlayerInfo().lastLocation = player.TPlayer.position;
+                player.GetPlayerInfo().pushLastLocation(player.TPlayer.position);
                 player.GetPlayerInfo().canBack = true;
             }
         }
@@ -94,8 +94,10 @@ namespace BackToDeath_TShock
                 return;
             }
 
-            player.Teleport(data.lastLocation.X, data.lastLocation.Y);
-            e.Player.SendSuccessMessage("Teleport you to last location");
+            Vector2 vector = data.popLastLocation();
+
+            player.Teleport(vector.X, vector.Y);
+            e.Player.SendSuccessMessage("Teleport to your last location");
         }
 
         public static async void cmdDelHome(CommandArgs e)
@@ -204,7 +206,7 @@ namespace BackToDeath_TShock
             switch (e.MsgID)
             {
                 case PacketTypes.PlayerDeathV2:
-                    playerInfo.lastLocation = tsplayer.TPlayer.position;
+                    playerInfo.pushLastLocation(tsplayer.TPlayer.position);
                     playerInfo.canBack = true;
                     break;
             }
