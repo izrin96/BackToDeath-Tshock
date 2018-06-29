@@ -12,7 +12,7 @@ namespace BackToDeath_TShock
     {
         public const string KEY = "BackToDeath_Data";
 
-        public List<Vector2> lastLocation { get; set; }
+        private List<Vector2> lastLocation { get; set; }
 
         public bool canBack = false;
 

@@ -100,7 +100,7 @@ namespace BackToDeath_TShock
             e.Player.SendSuccessMessage("Teleport to your last location");
         }
 
-        public static async void cmdDelHome(CommandArgs e)
+        private static async void cmdDelHome(CommandArgs e)
         {
             if (e.Parameters.Count > 1)
             {
@@ -127,7 +127,7 @@ namespace BackToDeath_TShock
             }
         }
 
-        public static async void cmdSetHome(CommandArgs e)
+        private static async void cmdSetHome(CommandArgs e)
         {
             if (e.Parameters.Count > 1)
             {
