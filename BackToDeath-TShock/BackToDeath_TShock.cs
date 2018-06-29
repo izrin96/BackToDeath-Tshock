@@ -40,6 +40,8 @@ namespace BackToDeath_TShock
 
         public override void Initialize()
         {
+            PlayerHooks.PlayerCommand += OnPlayerCommand;
+
             TShockAPI.Commands.ChatCommands.RemoveAll(a => a.Name == "home");
             Commands.ChatCommands.Add(new Command(cmdBack, "back", "b"));
             Commands.ChatCommands.Add(new Command(cmdHome, "home"));
