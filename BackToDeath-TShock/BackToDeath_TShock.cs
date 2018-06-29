@@ -87,7 +87,7 @@ namespace BackToDeath_TShock
             TSPlayer player = e.Player;
             PlayerInfo data = player.GetPlayerInfo();
 
-            if (!player.GetPlayerInfo().canBack)
+            if (!player.GetPlayerInfo().canBack || player.GetPlayerInfo().getLastLocationCount() == 0)
             {
                 e.Player.SendErrorMessage("Tak boleh back lagi!");
                 return;

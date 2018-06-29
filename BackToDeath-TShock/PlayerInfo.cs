@@ -23,7 +23,7 @@ namespace BackToDeath_TShock
 
         public Vector2 popLastLocation()
         {
-            Vector2 vector = new Vector2(-1,-1);
+            Vector2 vector = lastLocation[0];
 
             if (lastLocation.Count > 0)
             {
@@ -43,6 +43,11 @@ namespace BackToDeath_TShock
 
             if (lastLocation.Count == 5)
                 lastLocation.RemoveAt(0);
+        }
+
+        public int getLastLocationCount()
+        {
+            return lastLocation.Count;
         }
     }
 }
