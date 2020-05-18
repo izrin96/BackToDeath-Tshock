@@ -11,3 +11,16 @@ C:\Users\Shahredza\source\repos\BackToDeath-TShock\BackToDeath-TShock\obj\Debug\
 C:\Users\Shahredza\source\repos\BackToDeath-TShock\BackToDeath-TShock\bin\Debug\Mono.Data.Sqlite.dll
 C:\Users\Shahredza\source\repos\BackToDeath-TShock\BackToDeath-TShock\bin\Debug\MySql.Data.dll
 C:\Users\Shahredza\source\repos\BackToDeath-TShock\BackToDeath-TShock\bin\Debug\Newtonsoft.Json.dll
+F:\tshock 1.4\dev plugin\BackToDeath-Tshock\BackToDeath-TShock\obj\Debug\BackToDeath-TShock.csprojAssemblyReference.cache
+F:\tshock 1.4\dev plugin\BackToDeath-Tshock\BackToDeath-TShock\obj\Debug\BackToDeath-TShock.csproj.CoreCompileInputs.cache
+F:\tshock 1.4\dev plugin\BackToDeath-Tshock\BackToDeath-TShock\obj\Debug\BackToDeath-TShock.dll
+F:\tshock 1.4\dev plugin\BackToDeath-Tshock\BackToDeath-TShock\obj\Debug\BackToDeath-TShock.pdb
+F:\tshock 1.4\dev plugin\BackToDeath-Tshock\BackToDeath-TShock\bin\Debug\BackToDeath-TShock.dll
+F:\tshock 1.4\dev plugin\BackToDeath-Tshock\BackToDeath-TShock\bin\Debug\BackToDeath-TShock.pdb
+F:\tshock 1.4\dev plugin\BackToDeath-Tshock\BackToDeath-TShock\bin\Debug\Mono.Data.Sqlite.dll
+F:\tshock 1.4\dev plugin\BackToDeath-Tshock\BackToDeath-TShock\bin\Debug\MySql.Data.dll
+F:\tshock 1.4\dev plugin\BackToDeath-Tshock\BackToDeath-TShock\bin\Debug\Newtonsoft.Json.dll
+F:\tshock 1.4\dev plugin\BackToDeath-Tshock\BackToDeath-TShock\bin\Debug\OTAPI.dll
+F:\tshock 1.4\dev plugin\BackToDeath-Tshock\BackToDeath-TShock\bin\Debug\TerrariaServer.exe
+F:\tshock 1.4\dev plugin\BackToDeath-Tshock\BackToDeath-TShock\bin\Debug\TShockAPI.dll
+F:\tshock 1.4\dev plugin\BackToDeath-Tshock\BackToDeath-TShock\obj\Debug\BackToDeath-TShock.csproj.CopyComplete

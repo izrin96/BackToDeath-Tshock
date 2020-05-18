@@ -24,7 +24,7 @@ namespace BackToDeath_TShock.DbManager
             var sqlCreator = new SqlTableCreator(db, (IQueryBuilder)new SqliteQueryCreator());
             sqlCreator.EnsureTableStructure(new SqlTable("Homes",
                 new SqlColumn("ID", MySqlDbType.Int32) { AutoIncrement = true, Primary = true },
-                new SqlColumn("UserID", MySqlDbType.Int32),
+                new SqlColumn("UUID", MySqlDbType.Text),
                 new SqlColumn("Name", MySqlDbType.Text),
                 new SqlColumn("X", MySqlDbType.Double),
                 new SqlColumn("Y", MySqlDbType.Double),
@@ -35,7 +35,7 @@ namespace BackToDeath_TShock.DbManager
                 while (result.Read())
                 {
                     homes.Add(new Home(
-                        result.Get<int>("UserID"),
+                        result.Get<string>("UUID"),
                         result.Get<string>("Name"),
                         result.Get<float>("X"),
                         result.Get<float>("Y")));
@@ -51,9 +51,9 @@ namespace BackToDeath_TShock.DbManager
                 {
                     lock (syncLock)
                     {
-                        homes.Add(new Home(player.User.ID, name, x, y));
-                        return db.Query("INSERT INTO Homes (UserID, Name, X, Y, WorldID) VALUES (@0, @1, @2, @3, @4)",
-                            player.User.ID,
+                        homes.Add(new Home(player.UUID, name, x, y));
+                        return db.Query("INSERT INTO Homes (UUID, Name, X, Y, WorldID) VALUES (@0, @1, @2, @3, @4)",
+                            player.UUID,
                             name,
                             x,
                             y,
@@ -71,8 +71,8 @@ namespace BackToDeath_TShock.DbManager
         public async Task<bool> DeleteAsync(TSPlayer player, string name)
         {
             string query = db.GetSqlType() == SqlType.Mysql
-                ? "DELETE FROM Homes WHERE UserID = @0 AND Name = @1 AND WorldID = @2"
-                : "DELETE FROM Homes WHERE UserID = @0 AND Name = @1 AND WorldID = @2 COLLATE NOCASE";
+                ? "DELETE FROM Homes WHERE UUID = @0 AND Name = @1 AND WorldID = @2"
+                : "DELETE FROM Homes WHERE UUID = @0 AND Name = @1 AND WorldID = @2 COLLATE NOCASE";
 
             return await Task.Run(() =>
             {
@@ -81,8 +81,8 @@ namespace BackToDeath_TShock.DbManager
                     lock (syncLock)
                     {
                         homes.RemoveAll(h => h.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase)
-                            && h.UserID == player.User.ID);
-                        return db.Query(query, player.User.ID, name, Main.worldID) > 0;
+                            && h.UUID == player.UUID);
+                        return db.Query(query, player.UUID, name, Main.worldID) > 0;
                     }
                 }
                 catch (Exception ex)
@@ -102,7 +102,7 @@ namespace BackToDeath_TShock.DbManager
                     return
                         homes.Find(h =>
                             h.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase)
-                            && h.UserID == player.User.ID);
+                            && h.UUID == player.UUID);
                 }
             });
         }
@@ -113,7 +113,7 @@ namespace BackToDeath_TShock.DbManager
             {
                 lock (syncLock)
                 {
-                    return homes.FindAll(h => h.UserID == player.User.ID);
+                    return homes.FindAll(h => h.UUID == player.UUID);
                 }
             });
         }
@@ -132,7 +132,7 @@ namespace BackToDeath_TShock.DbManager
                             while (result.Read())
                             {
                                 homes.Add(new Home(
-                                    result.Get<int>("UserID"),
+                                    result.Get<string>("UUID"),
                                     result.Get<string>("Name"),
                                     result.Get<float>("X"),
                                     result.Get<float>("Y")));
@@ -152,8 +152,8 @@ namespace BackToDeath_TShock.DbManager
         public async Task<bool> UpdateAsync(TSPlayer player, string name, float x, float y)
         {
             string query = db.GetSqlType() == SqlType.Mysql
-                ? "UPDATE Homes SET X = @0, Y = @1 WHERE UserID = @2 AND Name = @3 AND WorldID = @4"
-                : "UPDATE Homes SET X = @0, Y = @1 WHERE UserID = @2 AND Name = @3 AND WorldID = @4 COLLATE NOCASE";
+                ? "UPDATE Homes SET X = @0, Y = @1 WHERE UUID = @2 AND Name = @3 AND WorldID = @4"
+                : "UPDATE Homes SET X = @0, Y = @1 WHERE UUID = @2 AND Name = @3 AND WorldID = @4 COLLATE NOCASE";
 
             return await Task.Run(() =>
             {
@@ -162,9 +162,9 @@ namespace BackToDeath_TShock.DbManager
                     lock (syncLock)
                     {
                         homes.RemoveAll(h => h.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase)
-                            && h.UserID == player.User.ID);
-                        homes.Add(new Home(player.User.ID, name, x, y));
-                        return db.Query(query, x, y, player.User.ID, name, Main.worldID) > 0;
+                            && h.UUID == player.UUID);
+                        homes.Add(new Home(player.UUID, name, x, y));
+                        return db.Query(query, x, y, player.UUID, name, Main.worldID) > 0;
                     }
                 }
                 catch (Exception ex)
